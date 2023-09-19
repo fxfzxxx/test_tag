@@ -1,0 +1,6 @@
+{
+  "appTitle": "test_tag",
+  "@appTitle": {
+    "description": "The title of the application"
+  }
+}
