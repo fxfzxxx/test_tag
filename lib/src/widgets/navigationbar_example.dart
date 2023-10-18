@@ -1,4 +1,7 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
+import 'package:test_tag/src/utils/app_layout.dart';
 
 class NavigationBarExample extends StatefulWidget {
   const NavigationBarExample({super.key});
@@ -9,6 +12,7 @@ class NavigationBarExample extends StatefulWidget {
 
 class _NavigationBarExampleState extends State<NavigationBarExample> {
   int currentPageIndex = 0;
+  String item = 'Default Item';
   final destinationArray = [
     const NavigationDestination(
       icon: Icon(Icons.home),
@@ -36,8 +40,10 @@ class _NavigationBarExampleState extends State<NavigationBarExample> {
     return Scaffold(
       appBar: AppBar(
         title: Text(destinationArray[currentPageIndex].label),
+        toolbarHeight: 50,
       ),
       bottomNavigationBar: NavigationBar(
+          height: 70,
           onDestinationSelected: (int index) {
             setState(() {
               currentPageIndex = index;
@@ -54,9 +60,42 @@ class _NavigationBarExampleState extends State<NavigationBarExample> {
           ),
         ),
         Container(
+          width: double.infinity,
           color: Colors.green,
-          child: const Center(
-            child: Text('Search'),
+          child: Flex(
+            direction: Axis.vertical,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Container(
+                margin: const EdgeInsetsDirectional.symmetric(horizontal: 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                        margin: const EdgeInsetsDirectional.symmetric(
+                            horizontal: 8),
+                        alignment: Alignment.bottomLeft,
+                        child: const Text(
+                          'Tag Preview',
+                        )),
+                    Card(
+                        child: SizedBox(
+                      width: double.infinity,
+                      // margin:
+                      //     const EdgeInsetsDirectional.symmetric(horizontal: 15),
+                      child: Column(
+                        children: <Widget>[
+                          const Text('ID: 1400058 ~ 1400060'),
+                          Text('Items: $item x 3'),
+                          const Text('Location: NW143'),
+                        ],
+                      ),
+                    )),
+                  ],
+                ),
+              ),
+              const Text('Item')
+            ],
           ),
         ),
         Container(
