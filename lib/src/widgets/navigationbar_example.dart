@@ -1,7 +1,6 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:test_tag/src/utils/app_layout.dart';
+import 'package:test_tag/src/widgets/buttons/tag_button.dart';
 
 class NavigationBarExample extends StatefulWidget {
   const NavigationBarExample({super.key});
@@ -12,6 +11,7 @@ class NavigationBarExample extends StatefulWidget {
 
 class _NavigationBarExampleState extends State<NavigationBarExample> {
   int currentPageIndex = 0;
+
   String item = 'Default Item';
   final destinationArray = [
     const NavigationDestination(
@@ -37,6 +37,8 @@ class _NavigationBarExampleState extends State<NavigationBarExample> {
   ];
   @override
   Widget build(BuildContext context) {
+    double screenHeight = AppLayout.getSize(context).height;
+    double screenWidth = AppLayout.getSize(context).width;
     return Scaffold(
       appBar: AppBar(
         title: Text(destinationArray[currentPageIndex].label),
@@ -59,11 +61,11 @@ class _NavigationBarExampleState extends State<NavigationBarExample> {
             child: Text('Home'),
           ),
         ),
-        Container(
+        SizedBox(
           width: double.infinity,
-          color: Colors.green,
-          child: Flex(
-            direction: Axis.vertical,
+          // color: Colors.green,
+          child: Column(
+            // direction: Axis.vertical,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Container(
@@ -94,7 +96,98 @@ class _NavigationBarExampleState extends State<NavigationBarExample> {
                   ],
                 ),
               ),
-              const Text('Item')
+              Container(
+                margin: const EdgeInsetsDirectional.symmetric(horizontal: 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                        margin: const EdgeInsetsDirectional.symmetric(
+                            horizontal: 8),
+                        alignment: Alignment.bottomLeft,
+                        child: const Text(
+                          'Item',
+                        )),
+                    Card(
+                        child: SizedBox(
+                      width: double.infinity,
+                      // margin:
+                      //     const EdgeInsetsDirectional.symmetric(horizontal: 15),
+                      child: Column(
+                        children: <Widget>[
+                          const Text('ID: 1400058 ~ 1400060'),
+                          Text('Items: $item x 3'),
+                          const Text('Location: NW143'),
+                        ],
+                      ),
+                    )),
+                  ],
+                ),
+              ),
+              Container(
+                margin: const EdgeInsetsDirectional.symmetric(horizontal: 8),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                        margin: const EdgeInsetsDirectional.symmetric(
+                            horizontal: 8),
+                        alignment: Alignment.bottomLeft,
+                        child: const Text(
+                          'Number from',
+                        )),
+                    const Card(
+                        child: SizedBox(
+                      width: double.infinity,
+                      // margin:
+                      //     const EdgeInsetsDirectional.symmetric(horizontal: 15),
+                      child: Column(
+                        children: <Widget>[
+                          Text('1400060'),
+                        ],
+                      ),
+                    )),
+                    Container(
+                        margin: const EdgeInsetsDirectional.symmetric(
+                            horizontal: 8),
+                        alignment: Alignment.bottomLeft,
+                        child: const Text(
+                          'To',
+                        )),
+                    const Card(
+                        child: SizedBox(
+                      width: double.infinity,
+                      // margin:
+                      //     const EdgeInsetsDirectional.symmetric(horizontal: 15),
+                      child: Column(
+                        children: <Widget>[
+                          Text('1400058'),
+                        ],
+                      ),
+                    )),
+                  ],
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  TagButton(
+                      text: 'Faulty',
+                      color: Colors.red,
+                      width: 0.1,
+                      onTap: () => {}),
+                  TagButton(
+                      text: 'Next location',
+                      color: Colors.grey,
+                      width: 0.1,
+                      onTap: () => {}),
+                  TagButton(
+                      text: 'Pass',
+                      color: Colors.green,
+                      width: 0.4,
+                      onTap: () => {}),
+                ],
+              )
             ],
           ),
         ),
