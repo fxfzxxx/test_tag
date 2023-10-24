@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_tag/src/utils/app_layout.dart';
 import 'package:test_tag/src/widgets/buttons/tag_button.dart';
+import 'package:test_tag/src/widgets/tag_item.dart';
 
 class NavigationBarExample extends StatefulWidget {
   const NavigationBarExample({super.key});
@@ -63,9 +64,7 @@ class _NavigationBarExampleState extends State<NavigationBarExample> {
         ),
         SizedBox(
           width: double.infinity,
-          // color: Colors.green,
           child: Column(
-            // direction: Axis.vertical,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Container(
@@ -98,31 +97,7 @@ class _NavigationBarExampleState extends State<NavigationBarExample> {
               ),
               Container(
                 margin: const EdgeInsetsDirectional.symmetric(horizontal: 8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                        margin: const EdgeInsetsDirectional.symmetric(
-                            horizontal: 8),
-                        alignment: Alignment.bottomLeft,
-                        child: const Text(
-                          'Item',
-                        )),
-                    Card(
-                        child: SizedBox(
-                      width: double.infinity,
-                      // margin:
-                      //     const EdgeInsetsDirectional.symmetric(horizontal: 15),
-                      child: Column(
-                        children: <Widget>[
-                          const Text('ID: 1400058 ~ 1400060'),
-                          Text('Items: $item x 3'),
-                          const Text('Location: NW143'),
-                        ],
-                      ),
-                    )),
-                  ],
-                ),
+                child: TagItem(),
               ),
               Container(
                 margin: const EdgeInsetsDirectional.symmetric(horizontal: 8),
@@ -172,17 +147,18 @@ class _NavigationBarExampleState extends State<NavigationBarExample> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   TagButton(
-                      text: 'Faulty',
+                      textFirstLine: 'Faulty',
                       color: Colors.red,
                       width: 0.1,
                       onTap: () => {}),
                   TagButton(
-                      text: 'Next location',
+                      textFirstLine: 'Next',
+                      textSecondLine: "location",
                       color: Colors.grey,
                       width: 0.1,
                       onTap: () => {}),
                   TagButton(
-                      text: 'Pass',
+                      textFirstLine: 'Pass',
                       color: Colors.green,
                       width: 0.4,
                       onTap: () => {}),
