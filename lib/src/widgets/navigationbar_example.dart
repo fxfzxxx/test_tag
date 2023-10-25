@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:test_tag/src/utils/app_layout.dart';
 import 'package:test_tag/src/widgets/buttons/tag_button.dart';
-import 'package:test_tag/src/widgets/tag_item.dart';
+import 'package:test_tag/src/widgets/tag_item/tag_item.dart';
+import 'package:test_tag/src/widgets/tag_number/tag_number.dart';
 
 class NavigationBarExample extends StatefulWidget {
   const NavigationBarExample({super.key});
@@ -23,7 +24,7 @@ class _NavigationBarExampleState extends State<NavigationBarExample> {
     const NavigationDestination(
       icon: Icon(Icons.search),
       selectedIcon: Icon(Icons.search),
-      label: 'Search',
+      label: 'Test and Tag',
     ),
     const NavigationDestination(
       icon: Icon(Icons.favorite_border),
@@ -43,10 +44,11 @@ class _NavigationBarExampleState extends State<NavigationBarExample> {
     return Scaffold(
       appBar: AppBar(
         title: Text(destinationArray[currentPageIndex].label),
-        toolbarHeight: 50,
+        toolbarHeight: 40,
       ),
       bottomNavigationBar: NavigationBar(
-          height: 70,
+          height: 60,
+          labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
           onDestinationSelected: (int index) {
             setState(() {
               currentPageIndex = index;
@@ -78,6 +80,10 @@ class _NavigationBarExampleState extends State<NavigationBarExample> {
                         alignment: Alignment.bottomLeft,
                         child: const Text(
                           'Tag Preview',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
                         )),
                     Card(
                         child: SizedBox(
@@ -101,47 +107,7 @@ class _NavigationBarExampleState extends State<NavigationBarExample> {
               ),
               Container(
                 margin: const EdgeInsetsDirectional.symmetric(horizontal: 8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                        margin: const EdgeInsetsDirectional.symmetric(
-                            horizontal: 8),
-                        alignment: Alignment.bottomLeft,
-                        child: const Text(
-                          'Number from',
-                        )),
-                    const Card(
-                        child: SizedBox(
-                      width: double.infinity,
-                      // margin:
-                      //     const EdgeInsetsDirectional.symmetric(horizontal: 15),
-                      child: Column(
-                        children: <Widget>[
-                          Text('1400060'),
-                        ],
-                      ),
-                    )),
-                    Container(
-                        margin: const EdgeInsetsDirectional.symmetric(
-                            horizontal: 8),
-                        alignment: Alignment.bottomLeft,
-                        child: const Text(
-                          'To',
-                        )),
-                    const Card(
-                        child: SizedBox(
-                      width: double.infinity,
-                      // margin:
-                      //     const EdgeInsetsDirectional.symmetric(horizontal: 15),
-                      child: Column(
-                        children: <Widget>[
-                          Text('1400058'),
-                        ],
-                      ),
-                    )),
-                  ],
-                ),
+                child: TagNumber()
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,

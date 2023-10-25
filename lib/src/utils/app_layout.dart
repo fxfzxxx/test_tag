@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
 
 class AppLayout {
-  static gap(double gap) {
+  static verticalGap(double gap) {
     return SizedBox(height: gap);
+  }
+  static horizontalGap(double gap) {
+    return SizedBox(width: gap);
   }
 
   static Size getSize(BuildContext context) {

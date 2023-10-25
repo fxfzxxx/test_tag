@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_tag/src/utils/app_layout.dart';
 
 class TagItemInput extends StatefulWidget {
   const TagItemInput({super.key});
@@ -24,17 +25,21 @@ class _TagItemInputState extends State<TagItemInput> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 6),
+      height: AppLayout.getSize(context).height * 0.08,
       width: double.infinity,
       child: Center(
         child: TextField(
           textAlign: TextAlign.center,
-          style: TextStyle(
+          textAlignVertical: TextAlignVertical.center,
+          style: const TextStyle(
             fontSize: 22,
-            fontWeight: FontWeight.bold,
+            // fontWeight: FontWeight.bold,
           
           ),
           decoration: const InputDecoration(
+            contentPadding: EdgeInsets.all(0),
             border: OutlineInputBorder(),
             filled: true,
           ),
