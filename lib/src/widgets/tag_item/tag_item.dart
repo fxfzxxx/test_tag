@@ -38,6 +38,7 @@ class TagItem extends StatelessWidget {
   Widget build(BuildContext context) {
     getOddEvenIndexArrays(items, oddIndexArray, evenIndexArray);
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Container(
             margin: const EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 3),
@@ -56,7 +57,7 @@ class TagItem extends StatelessWidget {
               children:
                   evenIndexArray.map((e) => TagItemButton(text: e)).toList(),
             ),
-            AppLayout.verticalGap(10),
+            AppLayout.verticalGap(7),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children:

@@ -22,22 +22,26 @@ class TagButton extends StatelessWidget {
     double screenHeight = AppLayout.getSize(context).height;
     double screenWidth = AppLayout.getSize(context).width;
 
-    return FilledButton(
-        onPressed: onTap,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: color,
-          minimumSize: Size(screenWidth * width, screenHeight * 0.1),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5),
+    return 
+    Container(
+      margin: const EdgeInsets.symmetric( vertical: 5),
+      child: FilledButton(
+          onPressed: onTap,
+          style: FilledButton.styleFrom(
+            backgroundColor: color,
+            minimumSize: Size(screenWidth * width, screenHeight * 0.1),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
+            padding: const EdgeInsets.all(5),
+            textStyle: const TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-          padding: const EdgeInsets.all(5),
-          textStyle: const TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        child: Column(
-          children: [Text(textFirstLine), if (textSecondLine != null) Text(textSecondLine!)],
-        ));
+          child: Column(
+            children: [Text(textFirstLine), if (textSecondLine != null) Text(textSecondLine!)],
+          )),
+    );
   }
 }

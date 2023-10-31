@@ -10,7 +10,7 @@ class TagItemButton extends StatelessWidget {
     return Row(children: [
       FilledButton(
         onPressed: null,
-        style: ElevatedButton.styleFrom(
+        style: FilledButton.styleFrom(
           padding: const EdgeInsets.all(1),
         ),
         child: Text(text),

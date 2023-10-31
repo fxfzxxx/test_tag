@@ -40,31 +40,31 @@ class _TagNumberInputState extends State<TagNumberInput> {
           
           ),
           decoration: const InputDecoration(
-            contentPadding: EdgeInsets.all(0),
+            contentPadding: EdgeInsets.all(0), //this will keep the text inside the box
             border: OutlineInputBorder(),
             filled: true,
           ),
           controller: _controller,
-          onSubmitted: (String value) async {
-            await showDialog<void>(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  title: const Text('Thanks!'),
-                  content: Text(
-                      'You typed "$value", which has length ${value.characters.length}.'),
-                  actions: <Widget>[
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text('OK'),
-                    ),
-                  ],
-                );
-              },
-            );
-          },
+          // onSubmitted: (String value) async {
+          //   await showDialog<void>(
+          //     context: context,
+          //     builder: (BuildContext context) {
+          //       return AlertDialog(
+          //         title: const Text('Thanks!'),
+          //         content: Text(
+          //             'You typed "$value", which has length ${value.characters.length}.'),
+          //         actions: <Widget>[
+          //           TextButton(
+          //             onPressed: () {
+          //               Navigator.pop(context);
+          //             },
+          //             child: const Text('OK'),
+          //           ),
+          //         ],
+          //       );
+          //     },
+          //   );
+          // },
         ),
       ),
     );
