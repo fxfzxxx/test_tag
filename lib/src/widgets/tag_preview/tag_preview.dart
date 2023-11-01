@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:test_tag/src/model/tag.dart';
 
@@ -9,6 +10,15 @@ class TagPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var tag = context.watch<TagModel>();
+    String tagId =
+        '${tag.tagStartId} ${tag.tagStartId.isEmpty ? '' : '~'} ${tag.tagEndId}';
+    String tagName = tag.tagName;
+    String tagQuantity = tag.tagQuantity.isEqual(0) |
+            tag.tagStartId.isEmpty |
+            tag.tagEndId.isEmpty
+        ? ''
+        : '${tag.tagQuantity}';
+    String tagLocation = tag.tagLocation;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -29,22 +39,28 @@ class TagPreview extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('ID:'),
                       Text('Items:'),
-                      Text('Location: '),
+                      Text('Quantity:'),
+                      Text('Location:'),
                     ],
                   ),
-                  Column(
-                    children: <Widget>[
-                      Text('${tag.tagStartId} ~ ${tag.tagEndId}'),
-                      Text('${tag.tagName} x ${tag.tagNumber}'),
-                      Text(tag.tagLocation),
-                    ],
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      // mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(tagId),
+                        Text(tagName),
+                        Text(tagQuantity),
+                        Text(tagLocation),
+                      ],
+                    ),
                   ),
                 ],
               ),

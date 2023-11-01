@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_tag/src/widgets/buttons/tag_button.dart';
 import 'package:test_tag/src/widgets/tag_item/tag_item.dart';
-import 'package:test_tag/src/widgets/tag_number/tag_number.dart';
+import 'package:test_tag/src/widgets/tag_ID/tag_id.dart';
 import 'package:test_tag/src/widgets/tag_preview/tag_preview.dart';
 
 class TagScreen extends StatefulWidget {

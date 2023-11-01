@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:test_tag/src/model/tag.dart';
 import 'package:test_tag/src/utils/app_layout.dart';
 
-class TagNumberInput extends StatefulWidget {
-  const TagNumberInput({super.key});
+class TagIDInput extends StatefulWidget {
+  final bool start;
+  const TagIDInput({super.key, required this.start});
 
   @override
-  State<TagNumberInput> createState() => _TagNumberInputState();
+  State<TagIDInput> createState() => _TagIDInputState();
 }
 
-class _TagNumberInputState extends State<TagNumberInput> {
+class _TagIDInputState extends State<TagIDInput> {
   late TextEditingController _controller;
+
+  // get start => TagIDInput;
 
   @override
   void initState() {
@@ -25,6 +30,7 @@ class _TagNumberInputState extends State<TagNumberInput> {
 
   @override
   Widget build(BuildContext context) {
+    var tag = context.watch<TagModel>();
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 6),
       height: AppLayout.getSize(context).height * 0.05,
@@ -37,14 +43,17 @@ class _TagNumberInputState extends State<TagNumberInput> {
             // height: 15,
             fontSize: 13,
             fontWeight: FontWeight.bold,
-          
           ),
           decoration: const InputDecoration(
-            contentPadding: EdgeInsets.all(0), //this will keep the text inside the box
+            contentPadding:
+                EdgeInsets.all(0), //this will keep the text inside the box
             border: OutlineInputBorder(),
             filled: true,
           ),
           controller: _controller,
+          onChanged: widget.start
+              ? (value) => tag.updateTagStartId(value)
+              : (value) => tag.updateTagEndId(value),
           // onSubmitted: (String value) async {
           //   await showDialog<void>(
           //     context: context,

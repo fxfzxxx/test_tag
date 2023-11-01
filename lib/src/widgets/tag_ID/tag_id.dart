@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:test_tag/src/widgets/tag_number/tag_number_input.dart';
+import 'package:test_tag/src/widgets/tag_ID/tag_id_input.dart';
 
 class TagNumber extends StatelessWidget {
   const TagNumber({super.key});
@@ -17,7 +17,7 @@ class TagNumber extends StatelessWidget {
               'ID from',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             )),
-        TagNumberInput(),
+        const TagIDInput(start:true),
         Container(
             margin: const EdgeInsetsDirectional.symmetric(
                 horizontal: 8, vertical: 3),
@@ -26,7 +26,7 @@ class TagNumber extends StatelessWidget {
               'To',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             )),
-        TagNumberInput(),
+         const TagIDInput(start:false),
       ],
     );
   }
