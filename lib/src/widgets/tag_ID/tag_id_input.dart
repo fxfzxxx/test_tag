@@ -30,7 +30,6 @@ class _TagIDInputState extends State<TagIDInput> {
 
   @override
   Widget build(BuildContext context) {
-    var tag = context.read<TagModel>();
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 6),
       height: AppLayout.getSize(context).height * 0.05,
@@ -52,8 +51,8 @@ class _TagIDInputState extends State<TagIDInput> {
           ),
           controller: _controller,
           onChanged: widget.start
-              ? (value) => tag.updateTagStartId(value)
-              : (value) => tag.updateTagEndId(value),
+              ? (value) => context.read<TagModel>().updateTagStartId(value)
+              : (value) => context.read<TagModel>().updateTagEndId(value),
         ),
       ),
     );

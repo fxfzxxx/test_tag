@@ -12,12 +12,11 @@ class TagItemButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var tag = context.read<TagModel>();
     return Row(children: [
       FilledButton(
         onPressed: () => {
           onPressedCallback(text),
-          tag.updateTagName(text),
+           context.read<TagModel>().updateTagName(text),
         },
         style: FilledButton.styleFrom(
           padding: const EdgeInsets.all(1),
