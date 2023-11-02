@@ -29,8 +29,6 @@ class _TagItemInputState extends State<TagItemInput> {
 
   @override
   Widget build(BuildContext context) {
-    // var tag = context.watch<TagModel>();
-    var tag = Provider.of<TagModel>(context, listen: false);
     _controller.text = widget.text;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 6),
@@ -53,7 +51,7 @@ class _TagItemInputState extends State<TagItemInput> {
           onChanged: (value) => {
             widget.onChangedCallback(
                 value), //this is to update the input text, as the text will be controlled by the parent widget
-            tag.updateTagName(
+            context.read<TagModel>().updateTagName(
                 value) //this is to update the tag model, so that the tag preview will be updated
           },
         ),
