@@ -9,6 +9,8 @@ class TagModel extends ChangeNotifier {
   int tagQuantity = 0;
   bool tagStatus = true;
   DateTime timestamp = DateTime.now();
+
+  
   void updateTagNumber() {
     tagQuantity = calculateTagNumber();
     notifyListeners();

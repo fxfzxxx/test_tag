@@ -10,8 +10,9 @@ class TagPreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var tag = context.watch<TagModel>();
-    String tagId =
-        '${tag.tagStartId} ${tag.tagStartId.isEmpty ? '' : '~'} ${tag.tagEndId}';
+    String tagId = tag.tagStartId == tag.tagEndId
+        ? tag.tagStartId
+        : '${tag.tagStartId} ${tag.tagStartId.isEmpty ? '' : '~'} ${tag.tagEndId}';
     String tagName = tag.tagName;
     String tagQuantity = tag.tagQuantity.isEqual(0) |
             tag.tagStartId.isEmpty |
@@ -37,7 +38,7 @@ class TagPreview extends StatelessWidget {
                 horizontal: 4, vertical: 4),
             child: Container(
               width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               child: Row(
                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

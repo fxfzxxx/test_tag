@@ -30,7 +30,7 @@ class _TagIDInputState extends State<TagIDInput> {
 
   @override
   Widget build(BuildContext context) {
-    var tag = context.watch<TagModel>();
+    var tag = context.read<TagModel>();
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 6),
       height: AppLayout.getSize(context).height * 0.05,
@@ -54,26 +54,6 @@ class _TagIDInputState extends State<TagIDInput> {
           onChanged: widget.start
               ? (value) => tag.updateTagStartId(value)
               : (value) => tag.updateTagEndId(value),
-          // onSubmitted: (String value) async {
-          //   await showDialog<void>(
-          //     context: context,
-          //     builder: (BuildContext context) {
-          //       return AlertDialog(
-          //         title: const Text('Thanks!'),
-          //         content: Text(
-          //             'You typed "$value", which has length ${value.characters.length}.'),
-          //         actions: <Widget>[
-          //           TextButton(
-          //             onPressed: () {
-          //               Navigator.pop(context);
-          //             },
-          //             child: const Text('OK'),
-          //           ),
-          //         ],
-          //       );
-          //     },
-          //   );
-          // },
         ),
       ),
     );

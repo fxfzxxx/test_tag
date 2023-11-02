@@ -4,19 +4,21 @@ import 'package:test_tag/src/model/tag.dart';
 import 'package:test_tag/src/utils/app_layout.dart';
 
 class TagItemInput extends StatefulWidget {
-  const TagItemInput({super.key});
+  String text;
+  final Function onChangedCallback;
+  TagItemInput(
+      {super.key, required this.text, required this.onChangedCallback});
 
   @override
   State<TagItemInput> createState() => _TagItemInputState();
 }
 
 class _TagItemInputState extends State<TagItemInput> {
-  late TextEditingController _controller;
+  final TextEditingController _controller = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _controller = TextEditingController();
   }
 
   @override
@@ -27,7 +29,9 @@ class _TagItemInputState extends State<TagItemInput> {
 
   @override
   Widget build(BuildContext context) {
-    var tag = context.watch<TagModel>();
+    // var tag = context.watch<TagModel>();
+    var tag = Provider.of<TagModel>(context, listen: false);
+    _controller.text = widget.text;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 6),
       height: AppLayout.getSize(context).height * 0.08,
@@ -46,27 +50,12 @@ class _TagItemInputState extends State<TagItemInput> {
             filled: true,
           ),
           controller: _controller,
-          onChanged: (value) => tag.updateTagName(value),
-          // onSubmitted: (String value) async {
-          //   await showDialog<void>(
-          //     context: context,
-          //     builder: (BuildContext context) {
-          //       return AlertDialog(
-          //         title: const Text('Thanks!'),
-          //         content: Text(
-          //             'You typed "$value", which has length ${value.characters.length}.'),
-          //         actions: <Widget>[
-          //           TextButton(
-          //             onPressed: () {
-          //               Navigator.pop(context);
-          //             },
-          //             child: const Text('OK'),
-          //           ),
-          //         ],
-          //       );
-          //     },
-          //   );
-          // },
+          onChanged: (value) => {
+            widget.onChangedCallback(
+                value), //this is to update the input text, as the text will be controlled by the parent widget
+            tag.updateTagName(
+                value) //this is to update the tag model, so that the tag preview will be updated
+          },
         ),
       ),
     );
