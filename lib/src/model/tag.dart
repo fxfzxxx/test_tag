@@ -10,7 +10,10 @@ class TagModel extends ChangeNotifier {
   bool tagStatus = true;
   DateTime timestamp = DateTime.now();
 
-  
+  void updateLocation(String newLocation) {
+    tagLocation = newLocation;
+    notifyListeners();
+  }
   void updateTagNumber() {
     tagQuantity = calculateTagNumber();
     notifyListeners();
@@ -58,7 +61,7 @@ class TagModel extends ChangeNotifier {
     this.tagStartId = tagStartId;
     this.tagEndId = tagEndId;
     this.tagLocation = tagLocation;
-    this.tagQuantity = tagNumber;
+    tagQuantity = tagNumber;
     this.tagStatus = tagStatus;
     this.timestamp = timestamp;
     notifyListeners();

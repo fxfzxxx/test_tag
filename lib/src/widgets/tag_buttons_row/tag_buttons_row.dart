@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:test_tag/src/model/tag.dart';
 import 'package:test_tag/src/widgets/buttons/tag_button.dart';
+import 'package:test_tag/src/widgets/dialogs/location_dialog.dart';
 
 class TagButtonsRow extends StatelessWidget {
   const TagButtonsRow({super.key});
@@ -23,12 +24,15 @@ class TagButtonsRow extends StatelessWidget {
             textSecondLine: "location",
             color: Colors.grey,
             width: 0.2,
-            onTap: () => {}),
+            onTap: () => showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) => const LocationDialog()
+                )),
         TagButton(
             textFirstLine: 'Pass',
             color: Colors.green,
             width: 0.4,
-            onTap: () => {}),
+            onTap: () => {})
       ],
     );
   }

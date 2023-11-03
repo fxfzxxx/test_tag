@@ -4,9 +4,9 @@ import 'package:test_tag/src/model/tag.dart';
 import 'package:test_tag/src/utils/app_layout.dart';
 
 class TagItemInput extends StatefulWidget {
-  String text;
+  final String text;
   final Function onChangedCallback;
-  TagItemInput(
+  const TagItemInput(
       {super.key, required this.text, required this.onChangedCallback});
 
   @override

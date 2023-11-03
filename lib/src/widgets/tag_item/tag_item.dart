@@ -7,18 +7,17 @@ import 'package:test_tag/src/widgets/tag_item/tag_item_button.dart';
 import 'package:test_tag/src/widgets/tag_item/tag_item_input.dart';
 
 class TagItem extends StatefulWidget {
-  TagItem({super.key});
+  const TagItem({super.key});
 
   @override
   State<TagItem> createState() => _TagItemState();
 }
 
 class _TagItemState extends State<TagItem> {
-
-  String inputText = '';
+  late String _inputText;
   @override
   Widget build(BuildContext context) {
-    // var tag = context.watch<TagModel>();
+    _inputText = context.read<TagModel>().tagName;
     List<String> evenIndexArray = TagItemModel.evenIndexArray;
     List<String> oddIndexArray = TagItemModel.oddIndexArray;
 
@@ -33,7 +32,7 @@ class _TagItemState extends State<TagItem> {
               'Item',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             )),
-        TagItemInput(text:inputText, onChangedCallback: tagItemInputOnChange),
+        TagItemInput(text: _inputText, onChangedCallback: tagItemInputOnChange),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           padding: const EdgeInsets.only(top: 10, left: 5),
@@ -65,15 +64,13 @@ class _TagItemState extends State<TagItem> {
 
   void tagItemInputOnChange(String text) {
     setState(() {
-      inputText = text;
+      _inputText = text;
     });
   }
 
   void tagItemButtonOnPressed(String text) {
     setState(() {
-      inputText = text;
+      _inputText = text;
     });
   }
-
-  
 }

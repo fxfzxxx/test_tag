@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:test_tag/src/screens/tag_screen.dart';
-import 'package:test_tag/src/utils/app_layout.dart';
 
 class AppNavigationBar extends StatefulWidget {
   const AppNavigationBar({super.key});
@@ -37,8 +36,6 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
   ];
   @override
   Widget build(BuildContext context) {
-    double screenHeight = AppLayout.getSize(context).height;
-    double screenWidth = AppLayout.getSize(context).width;
     return Scaffold(
       appBar: AppBar(
         title: Text(destinationArray[currentPageIndex].label),
@@ -62,7 +59,7 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
             child: Text('Home'),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: double.infinity,
           child: TagScreen(),
         ),

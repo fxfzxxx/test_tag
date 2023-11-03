@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:test_tag/src/widgets/buttons/tag_button.dart';
 import 'package:test_tag/src/widgets/tag_buttons_row/tag_buttons_row.dart';
 import 'package:test_tag/src/widgets/tag_item/tag_item.dart';
 import 'package:test_tag/src/widgets/tag_ID/tag_id.dart';
@@ -15,19 +14,19 @@ class TagScreen extends StatelessWidget {
       children: <Widget>[
         Container(
             margin: const EdgeInsetsDirectional.symmetric(horizontal: 8),
-            padding: EdgeInsets.symmetric(vertical: 0),
-            child: TagPreview()),
+            padding: const EdgeInsets.symmetric(vertical: 0),
+            child: const TagPreview()),
         Container(
-          padding: EdgeInsets.symmetric(vertical: 0),
+          padding: const EdgeInsets.symmetric(vertical: 0),
           margin: const EdgeInsetsDirectional.symmetric(horizontal: 8),
-          child: TagItem(),
+          child: const TagItem(),
         ),
         Container(
             margin: const EdgeInsetsDirectional.symmetric(horizontal: 8),
-            child: TagNumber()),
+            child: const TagNumber()),
         Container(
             margin: const EdgeInsetsDirectional.symmetric(horizontal: 15),
-            child: TagButtonsRow()),
+            child: const TagButtonsRow()),
       ],
     );
   }

@@ -30,6 +30,9 @@ class _TagIDInputState extends State<TagIDInput> {
 
   @override
   Widget build(BuildContext context) {
+    _controller.text = widget.start
+        ? context.watch<TagModel>().tagStartId
+        : context.watch<TagModel>().tagEndId;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 6),
       height: AppLayout.getSize(context).height * 0.05,
