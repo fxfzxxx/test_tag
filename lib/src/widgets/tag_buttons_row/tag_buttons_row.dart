@@ -26,7 +26,7 @@ class TagButtonsRow extends StatelessWidget {
             width: 0.2,
             onTap: () => showDialog<String>(
                   context: context,
-                  builder: (BuildContext context) => const LocationDialog()
+                  builder: (BuildContext context) => LocationDialog()
                 )),
         TagButton(
             textFirstLine: 'Pass',

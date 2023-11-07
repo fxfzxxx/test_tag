@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:test_tag/src/model/tag.dart';
+import 'package:test_tag/src/model/tag_list.dart';
 import 'package:test_tag/src/widgets/navigation_bar.dart';
 
 // import 'sample_feature/sample_item_details_view.dart';
@@ -30,7 +31,20 @@ class TestTagApp extends StatelessWidget {
       builder: (BuildContext context, Widget? child) {
         return MultiProvider(
             providers: [
-              ChangeNotifierProvider(create: (context) => TagModel())
+              ChangeNotifierProvider(
+                  create: (context) => TagModel(
+                      tagOwner: 'Default Owner',
+                      tagName: '',
+                      tagStartId: '',
+                      tagEndId: '',
+                      tagLocation: '',
+                      tagQuantity: 0,
+                      tagStatus: true,
+                      timestamp: DateTime.now())),
+              ChangeNotifierProvider(
+                  create: (context) => TagListModel(
+                        [],
+                      ))
             ],
             child: MaterialApp(
               // Providing a restorationScopeId allows the Navigator built by the

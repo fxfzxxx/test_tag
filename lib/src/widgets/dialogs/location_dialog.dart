@@ -2,38 +2,42 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:test_tag/src/model/tag.dart';
 
-class LocationDialog extends StatefulWidget {
-  const LocationDialog({super.key});
+class LocationDialog extends StatelessWidget {
+  LocationDialog({Key? key}) : super(key: key);
 
-  @override
-  State<LocationDialog> createState() => _LocationDialogState();
-}
+  final _formKey = GlobalKey<FormState>();
+  // final _focusNode = FocusNode();
 
-class _LocationDialogState extends State<LocationDialog> {
-  String _location = '';
   @override
   Widget build(BuildContext context) {
+    String location = '';
     return AlertDialog(
       title: const Text('Please enter location'),
-      content: TextField(
-        decoration: const InputDecoration(hintText: "Enter location"),
-        onChanged: (value) => {
-          setState(() {
-            _location = value;
-          }),
-        },
+      content: Form(
+        key: _formKey,
+        child: TextFormField(
+          decoration: const InputDecoration(hintText: "Enter location"),
+          validator: (value) {
+            if (value == null || value.isEmpty || value.trim().isEmpty) {
+              return 'Please enter some text';
+            }
+            location = value;
+            return null;
+          },
+          autofocus: true,
+        ),
       ),
       actions: <Widget>[
         TextButton(
-          onPressed: () => {
-            Navigator.pop(context, 'Cancel'),
-          },
+          onPressed: () => Navigator.pop(context, 'Cancel'),
           child: const Text('Cancel'),
         ),
         TextButton(
-          onPressed: () => {
-            Navigator.pop(context, 'OK'),
-            context.read<TagModel>().updateLocation(_location),
+          onPressed: () {
+            if (_formKey.currentState!.validate()) {
+              Navigator.pop(context, location);
+              context.read<TagModel>().updateLocation(location);
+            }
           },
           child: const Text('OK'),
         ),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:test_tag/src/model/tag_list.dart';
+import 'package:test_tag/src/screens/report_screen.dart';
 import 'package:test_tag/src/screens/tag_screen.dart';
 
 class AppNavigationBar extends StatefulWidget {
@@ -53,10 +55,10 @@ class _AppNavigationBarState extends State<AppNavigationBar> {
           selectedIndex: currentPageIndex,
           destinations: destinationArray),
       body: <Widget>[
-        Container(
-          color: Colors.red,
-          child: const Center(
-            child: Text('Home'),
+        const SizedBox(
+          // color: Colors.red,
+          child: Center(
+            child: ReportScreen(),
           ),
         ),
         const SizedBox(
