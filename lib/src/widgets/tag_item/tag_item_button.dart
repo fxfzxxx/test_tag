@@ -6,16 +6,15 @@ import '../../model/tag.dart';
 
 class TagItemButton extends StatelessWidget {
   final String text;
-  final Function onPressedCallback;
+
   const TagItemButton(
-      {super.key, required this.text, required this.onPressedCallback});
+      {super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {
     return Row(children: [
       FilledButton(
         onPressed: () => {
-          onPressedCallback(text),
            context.read<TagModel>().updateTagName(text),
         },
         style: FilledButton.styleFrom(

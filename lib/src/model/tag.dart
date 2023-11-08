@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:test_tag/src/model/tag_list.dart';
 
 class TagModel extends ChangeNotifier {
   String tagOwner;
   String tagName;
   String tagStartId;
   String tagEndId;
-  String tagLocation ;
+  String tagLocation;
   int tagQuantity;
   bool tagStatus;
-  DateTime timestamp;
+  DateTime startTime;
+  DateTime endTime;
+  TagListModel tagListModel = TagListModel([]);
 
   TagModel(
       {required this.tagOwner,
@@ -18,7 +21,21 @@ class TagModel extends ChangeNotifier {
       required this.tagLocation,
       required this.tagQuantity,
       required this.tagStatus,
-      required this.timestamp});
+      required this.startTime,
+      required this.endTime});
+  TagModel clone() {
+    return TagModel(
+      tagOwner: tagOwner,
+      tagName: tagName,
+      tagStartId: tagStartId,
+      tagEndId: tagEndId,
+      tagLocation: tagLocation,
+      tagQuantity: tagQuantity,
+      tagStatus: tagStatus,
+      startTime: startTime,
+      endTime: endTime,
+    );
+  }
 
   factory TagModel.fromJson(Map<String, dynamic> json) {
     return TagModel(
@@ -29,13 +46,15 @@ class TagModel extends ChangeNotifier {
         tagLocation: json['tagLocation'],
         tagQuantity: json['tagQuantity'],
         tagStatus: json['tagStatus'],
-        timestamp: DateTime.parse(json['timestamp']));
+        startTime: DateTime.parse(json['startTime']),
+        endTime: DateTime.parse(json['endTime']));
   }
 
   void updateLocation(String newLocation) {
     tagLocation = newLocation;
     notifyListeners();
   }
+
   void updateTagNumber() {
     tagQuantity = calculateTagNumber();
     notifyListeners();
@@ -69,23 +88,38 @@ class TagModel extends ChangeNotifier {
     return endNumber - startNumber + 1;
   }
 
-  // void createTag(
-  //     {required String tagOwner,
-  //     required String tagName,
-  //     required String tagStartId,
-  //     required String tagEndId,
-  //     required String tagLocation,
-  //     required int tagNumber,
-  //     required bool tagStatus,
-  //     required DateTime timestamp}) {
-  //   this.tagOwner = tagOwner;
-  //   this.tagName = tagName;
-  //   this.tagStartId = tagStartId;
-  //   this.tagEndId = tagEndId;
-  //   this.tagLocation = tagLocation;
-  //   tagQuantity = tagNumber;
-  //   this.tagStatus = tagStatus;
-  //   this.timestamp = timestamp;
-  //   // notifyListeners();
-  // }
+  void updateTagStatus(bool newTagStatus) {
+    tagStatus = newTagStatus;
+    endTime = DateTime.now();
+  }
+
+  void resetTag() {
+    tagOwner = 'Default Owner';
+    tagName = '';
+
+    // Set the start ID to the current end ID
+
+    // Separate all alphabetic and numeric parts
+    var matches = RegExp(r'(\D+|\d+)')
+        .allMatches(tagEndId)
+        .map((match) => match.group(0))
+        .toList();
+
+    // Find the last numeric part and increment it
+    for (var i = matches.length - 1; i >= 0; i--) {
+      if (RegExp(r'\d+').hasMatch(matches[i]!)) {
+        matches[i] = (int.parse(matches[i]!) + 1).toString();
+        break;
+      }
+    }
+
+    // Concatenate all parts back together
+    tagEndId = matches.join('');
+    tagStartId = tagEndId;
+    tagQuantity = 1;
+    tagStatus = true;
+    startTime = DateTime.now();
+    endTime = DateTime.now();
+    notifyListeners();
+  }
 }

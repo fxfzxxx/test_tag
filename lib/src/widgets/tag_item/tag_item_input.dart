@@ -4,10 +4,7 @@ import 'package:test_tag/src/model/tag.dart';
 import 'package:test_tag/src/utils/app_layout.dart';
 
 class TagItemInput extends StatefulWidget {
-  final String text;
-  final Function onChangedCallback;
-  const TagItemInput(
-      {super.key, required this.text, required this.onChangedCallback});
+  const TagItemInput({super.key});
 
   @override
   State<TagItemInput> createState() => _TagItemInputState();
@@ -29,7 +26,7 @@ class _TagItemInputState extends State<TagItemInput> {
 
   @override
   Widget build(BuildContext context) {
-    _controller.text = widget.text;
+    _controller.text = context.watch<TagModel>().tagName;
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 6),
       height: AppLayout.getSize(context).height * 0.08,
@@ -49,8 +46,6 @@ class _TagItemInputState extends State<TagItemInput> {
           ),
           controller: _controller,
           onChanged: (value) => {
-            widget.onChangedCallback(
-                value), //this is to update the input text, as the text will be controlled by the parent widget
             context.read<TagModel>().updateTagName(
                 value) //this is to update the tag model, so that the tag preview will be updated
           },

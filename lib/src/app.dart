@@ -40,11 +40,33 @@ class TestTagApp extends StatelessWidget {
                       tagLocation: '',
                       tagQuantity: 0,
                       tagStatus: true,
-                      timestamp: DateTime.now())),
+                      startTime: DateTime.now(),
+                      endTime: DateTime.now()
+                      )),
               ChangeNotifierProvider(
-                  create: (context) => TagListModel(
+                  create: (_) => TagListModel(
                         [],
-                      ))
+                      )),
+              // ChangeNotifierProxyProvider<TagModel,TagListModel>(
+              //   create: (_) => TagListModel([]),
+              //   update: (_, tagListModel) => tagListModel?..addTag,
+              // ),
+            //   ChangeNotifierProxyProvider<TagListModel, TagModel>(
+            //       create: (context) => TagModel(
+            //           tagOwner: 'Default Owner',
+            //           tagName: '',
+            //           tagStartId: '',
+            //           tagEndId: '',
+            //           tagLocation: '',
+            //           tagQuantity: 0,
+            //           tagStatus: true,
+            //           timestamp: DateTime.now()),
+            //       update: (context, tagList, tag) {
+            //         if (tag == null) throw ArgumentError.notNull('tab');
+            //         tag.tagListModel = tagList;
+            //         return tag;
+            //         // TagListModel(tagList!.tags..add(tag));
+            //       })
             ],
             child: MaterialApp(
               // Providing a restorationScopeId allows the Navigator built by the
